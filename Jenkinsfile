@@ -8,13 +8,8 @@ pipeline {
             }
         }
         stage('Stage 2') {
-           agent {
-                docker {
-                    image 'node:14-alpine'            
-                    }
-            }
+            agent { dockerfile true }
             steps {
-                echo 'Agent docker: ' 
                 sh 'node --version'
                 sh 'ls -ltr'
             }
