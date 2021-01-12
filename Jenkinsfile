@@ -10,9 +10,7 @@ pipeline {
         stage('Stage 2') {
            agent {
                 docker {
-                    image 'node:14-alpine' 
-                    // label 'docker1'
-                    // args  '-v /tmp:/tmp'                     
+                    image 'node:14-alpine'                
                     }
             }
             steps {
