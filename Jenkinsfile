@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Stage 1') {
             steps {
-                echo 'Hello stage 1 - steps !' 
-                echo "env is: '${env}'"
+                echo 'Hello stage 1 - step print env !' 
+                sh 'printenv'
             }
         }
         stage('Stage 2') {
