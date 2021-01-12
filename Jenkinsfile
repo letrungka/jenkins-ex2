@@ -11,8 +11,8 @@ pipeline {
            agent {
                 docker {
                     image 'node:14-alpine' 
-                    label 'docker1'
-                    args  '-v /tmp:/tmp'                     
+                    // label 'docker1'
+                    // args  '-v /tmp:/tmp'                     
                     }
             }
             steps {
