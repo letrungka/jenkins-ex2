@@ -8,9 +8,12 @@ pipeline {
             }
         }
         stage('Stage 2') {
+           agent {
+                docker { image 'node:14-alpine' }
+            }
             steps {
-                echo 'Hello stage 2! - branch is: ' 
-                echo "${GIT_BRANCH}"
+                echo 'Agent docker: ' 
+                sh 'node --version'
             }
         } 
     }
