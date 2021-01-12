@@ -1,4 +1,4 @@
-node {
+node ("agent1") {
     stage('Checkout') {
       checkout scm
     }
@@ -11,3 +11,4 @@ node {
      sh 'docker build -t react-ex2 -f Dockerfile --no-cache .'
     }
 }
+// wget https://download.docker.com/linux/static/stable/x86_64/docker-19.03.0.tgz
