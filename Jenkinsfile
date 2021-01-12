@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Stage 2') {
             steps {
-                echo 'Hello stage 2!' 
+                echo 'Hello stage 2! - print branch' 
+                echo "${GIT_BRANCH}"
             }
         } 
     }
