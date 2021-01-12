@@ -16,6 +16,7 @@ pipeline {
             steps {
                 echo 'Agent docker: ' 
                 sh 'node --version'
+                sh 'ls -ltr'
             }
         } 
     }
