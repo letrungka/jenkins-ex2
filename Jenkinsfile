@@ -1,17 +1,14 @@
 pipeline {
-    agent {label "agent1"}
+    agent none
     stages {
         stage('Back-end') {
-            agent {
-                docker { image 'maven:3-alpine' }
-            }
+            agent { label "agent1" }
             steps {
                 sh 'mvn --version'
             }
         }
         stage('Front-end') {
-            agent {
-                docker { image 'node:14-alpine' }
+            agent { label "agent1" }
             }
             steps {
                 sh 'node --version'
