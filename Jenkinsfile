@@ -1,31 +1,21 @@
 pipeline {
-  agent {label "agent1"}
-  stages {
-    // stage('Checkout') {
-    //   steps {
-    //     checkout scm
-    //     }
-    // }
-    stage('Environment') {
-      steps {
-        sh 'printenv'
-      }
+    agent none
+    stages {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:14-alpine' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
     }
-    stage('Build Docker test'){
-      steps {
-          script {
-              if ("${GIT_BRANCH}" == 'origin/master') {
-                  echo "${GIT_BRANCH}"
-                  echo 'I only execute on the master branch'
-                  sh 'docker build -t react-ex2:v1 -f Dockerfile --no-cache .'
-                  sh 'docker tag react-ex2:v1 react-ex2:latest'
-              } else {
-                  echo "${GIT_BRANCH}"
-                  echo 'I execute elsewhere'
-              }
-          }
-      }
-    }
-  }
 }
-// wget https://download.docker.com/linux/static/stable/x86_64/docker-19.03.0.tgz
