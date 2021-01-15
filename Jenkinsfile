@@ -9,7 +9,6 @@ pipeline {
         }
         stage('Front-end') {
             agent { label "agent1" }
-            }
             steps {
                 sh 'node --version'
             }
