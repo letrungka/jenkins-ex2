@@ -10,7 +10,11 @@ pipeline {
         stage('Front-end') {
             agent { label "agent1" }
             steps {
-                sh 'node --version'
+              echo '=== check git sha ==='
+              script {
+                  GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
+                  echo "GIT_COMMIT_HASH: ${GIT_COMMIT_HASH}"
+              }
             }
         }
     }
