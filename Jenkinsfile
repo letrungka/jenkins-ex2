@@ -1,20 +1,30 @@
 pipeline {
     agent none
     stages {
-        stage('Back-end') {
+        stage('env') {
             agent { label "agent1" }
             steps {
                 echo '=== printenv ==='
                 sh 'printenv'
             }
         }
-        stage('Front-end') {
+        stage('Test Application') {
+            steps {
+                echo '=== Testing Application ==='
+            }
+            post {
+                always {
+       //             junit 'target/surefire-reports/*.xml'
+                    echo "=============do something ========="
+                }
+            }
+        }
+        stage('Build') {
             agent { label "agent1" }
             steps {
               echo '=== check git sha ==='
               script {
-                  GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                  echo "GIT_COMMIT_HASH: ${GIT_COMMIT_HASH}"
+                  echo "GIT_COMMIT_HASH: ${GIT_COMMIT}"
               }
             }
         }
