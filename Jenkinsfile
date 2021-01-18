@@ -4,7 +4,8 @@ pipeline {
         stage('Back-end') {
             agent { label "agent1" }
             steps {
-                sh 'mvn --version'
+                echo '=== printenv ==='
+                sh 'printenv'
             }
         }
         stage('Front-end') {
