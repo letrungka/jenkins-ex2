@@ -1,17 +1,34 @@
 pipeline {
-    agent { label 'agent1' }
+    agent none
     stages {
-        stage('Stage 1') {
+        stage('env') {
+            agent { label "agent1" }
             steps {
-                echo 'Hello stage 1 - step to print env !' 
+                echo '=== printenv ==='
                 sh 'printenv'
             }
         }
-        stage('Stage 2') {
+        stage('Test Application') {
             steps {
                 echo 'Hello stage 2! - branch: ' 
                 echo "${GIT_BRANCH}"
+                echo '=== Testing Application ==='
             }
-        } 
+            post {
+                always {
+       //             junit 'target/surefire-reports/*.xml'
+                    echo "=============do something ========="
+                }
+            }
+        }
+        stage('Build') {
+            agent { label "agent1" }
+            steps {
+              echo '=== check git sha ==='
+              script {
+                  echo "GIT_COMMIT_HASH: ${GIT_COMMIT}"
+              }
+            }
+        }
     }
 }
