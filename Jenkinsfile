@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Test Application') {
             steps {
-                echo 'Hello stage 2! - branch: ' 
+
                 echo "${GIT_BRANCH}"
                 echo '=== Testing Application ==='
             }
