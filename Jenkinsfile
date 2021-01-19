@@ -12,6 +12,7 @@ pipeline {
             steps {
 
                 echo "${GIT_BRANCH}"
+                //
                 echo '=== Testing Application ==='
             }
             post {
