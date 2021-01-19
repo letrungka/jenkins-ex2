@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Test Application') {
             steps {
+                //
                 echo '=== Testing Application ==='
             }
             post {
