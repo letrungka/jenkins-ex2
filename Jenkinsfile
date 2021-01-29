@@ -1,7 +1,8 @@
 pipeline {
     agent none
     environment {
-        BRANCH_NAME = "${env.BRANCH_NAME}"
+        BRANCH_NAME = sh 'echo ${GIT_BRANCH} | grep -o -P  "[^\/]+$"'
+        // 
     }
     stages {
         stage('env') {
