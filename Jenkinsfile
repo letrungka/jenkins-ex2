@@ -21,7 +21,7 @@ pipeline {
             }
         }
         stage('Build') {
-            input 'Do you approve deployment?'
+            input(message: "Deploy ???", ok: 'Deploy')
             agent { label "agent1" }
             steps {
               echo '=== check git sha ==='
