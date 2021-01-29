@@ -1,7 +1,7 @@
 pipeline {
     agent { label "agent1" }
     environment {
-        BRANCH_NAME = sh ''' echo "${GIT_BRANCH}" | grep -o -P "[^\\/]+$"
+        BRANCH_NAME = sh ''' echo "${GIT_BRANCH}" | grep -o -E "[^\\/]+$"
                         '''
         // 
     }
