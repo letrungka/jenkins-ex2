@@ -37,8 +37,13 @@ pipeline {
             }
         }
         stage('Push Artifact'){
-            echo "Pushing Artifact ..."
-            S3Upload(file:'result.txt', bucket:'', path:'artifacts/${GIT_COMMIT}_result.txt')
+            steps{
+                echo "Pushing Artifact ..."
+                withAWS(region:'eu-east-1',credentials:'awss3upload') {
+                    // do something
+                    S3Upload(file:'result.txt', bucket:'', path:'artifacts/${GIT_COMMIT}_result.txt')
+                }
+            }
         }
     }
 }
