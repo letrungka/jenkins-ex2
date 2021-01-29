@@ -21,8 +21,10 @@ pipeline {
             }
         }
         stage('Build') {
-            input{
-                message "Do you want to continute for deploying the infrastructure ?"
+            timeout(time: 1, unit: 'MINUTES') {
+                input{
+                    message "Do you want to continute for deploying the infrastructure ?"
+                }
             }
             agent { label "agent1" }
             steps {
