@@ -1,7 +1,7 @@
 pipeline {
     agent { label "agent1" }
     environment {
-        BRANCH_NAME = echo "${GIT_BRANCH}" | grep -o -E "[^\\/]+$" 
+        SOME_THING = "defined"
                         
         // 
     }
@@ -30,6 +30,8 @@ pipeline {
               echo '=== check git sha ==='
               script {
                   echo "GIT_COMMIT_HASH: ${GIT_COMMIT}"
+                  BRANCH_NAME = `echo ${GIT_BRANCH} | grep -o -E "[^\\/]+$"`
+                  echo "BRANCH: ${BRANCH_NAME}"
               }
             }
         }
