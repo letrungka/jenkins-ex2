@@ -21,7 +21,9 @@ pipeline {
             }
         }
         stage('Build') {
-            input(message: "Deploy ???", ok: 'Deploy')
+            input{
+                message "Do you want to proceed for production deployment?"
+            }
             agent { label "agent1" }
             steps {
               echo '=== check git sha ==='
