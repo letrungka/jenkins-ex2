@@ -21,13 +21,13 @@ pipeline {
             }
         }
         stage('Build') {
+            agent { label "agent1" }
+            steps {
             timeout(time: 1, unit: 'MINUTES') {
                 input{
                     message "Do you want to continute for deploying the infrastructure ?"
                 }
             }
-            agent { label "agent1" }
-            steps {
               echo '=== check git sha ==='
               script {
                   echo "GIT_COMMIT_HASH: ${GIT_COMMIT}"
