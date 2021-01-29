@@ -36,10 +36,9 @@ pipeline {
             }
         }
         stage('Push Artifact'){
-            input { message "Do you want to continute for uploading to S3 ?"}
+            // input { message "Do you want to continute for uploading to S3 ?"}
             steps {
-                echo "Pushing Artifact ..."
-            }
+            echo "Pushing Artifact ..."
             withAWS(credentials:'awss3upload') {            
                 S3Upload(file:'result.txt', bucket:'terraform-ex1', path:"artifacts/${GIT_COMMIT}_result.txt")
             }
