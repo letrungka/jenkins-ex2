@@ -23,8 +23,7 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            input { message "Do you want to continute for deploying the infrastructure ?"}
+        stage('Build') {    
             steps {
               echo '=== check git sha ==='
               script {
@@ -37,6 +36,7 @@ pipeline {
             }
         }
         stage('Push Artifact'){
+            input { message "Do you want to continute for uploading to S3 ?"}
             steps{
                 echo "Pushing Artifact ..."
                 withAWS(region:'eu-east-1',credentials:'awss3upload') {
