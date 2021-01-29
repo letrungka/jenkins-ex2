@@ -31,7 +31,7 @@ pipeline {
               script {
                   echo "GIT_COMMIT_HASH: ${GIT_COMMIT}"
                   sh '''
-                    BRANCH_NAME=(`echo ${GIT_BRANCH} | grep -o -E "[^\\/]+$"`)
+                    BRANCH_NAME=`echo ${GIT_BRANCH} | grep -o -E "[^\\/]+$"`
                     echo "BRANCH: ${BRANCH_NAME}"
                   '''
               }
