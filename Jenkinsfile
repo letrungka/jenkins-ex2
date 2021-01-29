@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build') {
             input{
-                message "Do you want to proceed for production deployment?"
+                message "Do you want to continute for deploying the infrastructure ?"
             }
             agent { label "agent1" }
             steps {
