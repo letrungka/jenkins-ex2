@@ -31,10 +31,14 @@ pipeline {
                   echo "GIT_COMMIT_HASH: ${GIT_COMMIT}"
                   sh '''
                     BRANCH_NAME=`echo ${GIT_BRANCH} | grep -o -E "[^\\/]+$"`
-                    echo "BRANCH: ${BRANCH_NAME}"
+                    echo "BRANCH: ${BRANCH_NAME}" > result.txt
                   '''
               }
             }
+        }
+        stage('Push Artifact'){
+            echo "Pushing Artifact ..."
+            S3Upload(file:'result.txt', bucket:'', path:'artifacts/${GIT_COMMIT}_result.txt')
         }
     }
 }
