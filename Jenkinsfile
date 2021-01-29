@@ -42,6 +42,7 @@ pipeline {
                 withAWS(credentials:'awss3upload') {            
                     s3Upload(file:'result.txt', bucket:'terraform-ex1', path:"artifacts/${GIT_COMMIT}_result.txt")
                 }
+                echo "Done!"
             }
         }
     }
