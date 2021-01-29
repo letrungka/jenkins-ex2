@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent { label "agent1" }
     environment {
         BRANCH_NAME = sh ''' echo "${GIT_BRANCH}" | grep -o -P "[^\\/]+$"
                         '''
@@ -7,7 +7,6 @@ pipeline {
     }
     stages {
         stage('env') {
-            agent { label "agent1" }
             steps {
                 echo '=== printenv ==='
                 sh 'printenv'
@@ -26,7 +25,6 @@ pipeline {
             }
         }
         stage('Build') {
-            agent { label "agent1" }
             input { message "Do you want to continute for deploying the infrastructure ?"}
             steps {
               echo '=== check git sha ==='
